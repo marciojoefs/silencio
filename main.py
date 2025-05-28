@@ -1,73 +1,92 @@
-import streamlit as st
-from datetime import datetime
-from streamlit_autorefresh import st_autorefresh
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de Silêncio - Gestão do Condomínio</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #d90429;
+      font-size: 2.4em;
+    }
+    .contador {
+      font-size: 2em;
+      font-weight: bold;
+      color: red;
+      margin: 30px 0;
+    }
+    .botao {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .whatsapp {
+      background-color: #25D366;
+      color: white;
+    }
+    .email {
+      background-color: #d00000;
+      color: white;
+    }
+    .alerta {
+      background-color: #003566;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 30px;
+      font-size: 16px;
+    }
+    blockquote {
+      font-style: italic;
+      margin-top: 30px;
+      font-size: 18px;
+    }
+    .rodape {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📢 Contador de Silênçio da Gestão do Condomínio</h1>
+  <p>Desde o dia <strong>23 de maio de 2025, às 12h</strong>, aguardamos uma resposta da gestão (síndico e conselho fiscal).</p>
+  <p>Tempo decorrido:</p>
+  <div class="contador" id="contador"></div>
 
-# ✅ Configuração inicial — deve ser o primeiro comando
-st.set_page_config(page_title="Contador de Silêncio", layout="centered")
+  <a href="https://wa.me/?text=Veja%20o%20contador%20de%20sil%C3%AAncio:%20https://silencio.streamlit.app" target="_blank">
+    <button class="botao whatsapp">📲 Compartilhar no WhatsApp</button>
+  </a>
+  <a href="mailto:sindico@exemplo.com?subject=Omiss%C3%A3o%20de%20resposta&body=Prezados,%0A%0AO%20sil%C3%AAncio%20da%20gest%C3%A3o%20condominial%20persiste%20desde%2023/05/2025%20%C3%A0s%2012h.%0AConfira%20o%20contador%20em%20tempo%20real:%20https://silencio.streamlit.app%0A%0AAtenciosamente,%0ACond%C3%B4mino%20vigilante" target="_blank">
+    <button class="botao email">🚨 Denunciar por E-mail</button>
+  </a>
 
-# 🔁 Auto atualização a cada 1 segundo
-st_autorefresh(interval=1000, key="silencio")
+  <div class="alerta">⚖️ O Código Civil (art. 1.348, VIII) exige que o síndico preste contas e responda aos condôminos. Omissão pode configurar infração legal.</div>
+  <blockquote>“Transparência não é favor. É dever.”</blockquote>
+  <p class="rodape">Aplicativo criado por condôminos vigilantes para promover transparência e boa gestão.</p>
 
-# 📅 Data de início do silêncio
-data_solicitacao = datetime(2025, 5, 23, 12, 0, 0)
-agora = datetime.now()
-tempo_passado = agora - data_solicitacao
-dias = tempo_passado.days
-horas, resto = divmod(tempo_passado.seconds, 3600)
-minutos, segundos = divmod(resto, 60)
-
-# 🎯 Estilo e cabeçalho
-st.markdown("""
-    <h1 style='text-align: center; color: #d90429; font-size: 42px;'>📢 CONTADOR DE SILÊNCIO</h1>
-    <p style='text-align: center; font-size: 20px;'>
-        Aguardamos desde <strong>23 de maio de 2025 às 12h</strong> uma resposta formal do <strong>síndico e conselho</strong> do condomínio.
-    </p>
-""", unsafe_allow_html=True)
-
-# 🕒 Contador em destaque
-st.markdown(f"""
-    <div style='text-align: center; font-size: 48px; font-weight: bold; color: red; margin: 20px 0;'>
-        ⏱️ {dias} dias, {horas:02}h {minutos:02}min {segundos:02}s de silêncio
-    </div>
-""", unsafe_allow_html=True)
-
-# 🔘 Botões de denúncia e compartilhamento
-url_site = "https://silencio.streamlit.app"
-msg_whatsapp = "Veja o tempo de silêncio da gestão do nosso condomínio ⏱️\nhttps://silencio.streamlit.app"
-msg_email = "Prezados,%0A%0AO silêncio da gestão condominial persiste desde 23/05/2025 às 12h.%0AConfira o contador em tempo real: https://silencio.streamlit.app%0A%0AAtenciosamente,%0ACondômino vigilante"
-
-col1, col2 = st.columns(2)
-with col1:
-    st.markdown(f"""
-        <a href="https://wa.me/?text={msg_whatsapp}" target="_blank">
-            <button style="padding: 10px 20px; font-size: 18px; background-color: #25D366; color: white; border: none; border-radius: 5px;">
-                📲 Compartilhar no WhatsApp
-            </button>
-        </a>
-    """, unsafe_allow_html=True)
-
-with col2:
-    st.markdown(f"""
-        <a href="mailto:sindico@exemplo.com?subject=Omissão de resposta&body={msg_email}" target="_blank">
-            <button style="padding: 10px 20px; font-size: 18px; background-color: #d00000; color: white; border: none; border-radius: 5px;">
-                🚨 Denunciar por E-mail
-            </button>
-        </a>
-    """, unsafe_allow_html=True)
-
-# 📌 Informativo Legal
-st.markdown("""
-    <div style='text-align: center; background-color: #003566; color: white; padding: 12px; border-radius: 8px; font-size: 16px; margin-top: 30px;'>
-        ⚖️ O Código Civil (art. 1.348, VIII) exige que o síndico preste contas e responda aos condôminos. A omissão pode configurar infração legal.
-    </div>
-""", unsafe_allow_html=True)
-
-# 📢 Frase de impacto e rodapé
-st.markdown("""
-    <blockquote style='text-align: center; font-style: italic; font-size: 18px; margin-top: 20px;'>
-        “Transparência não é favor. É dever.”
-    </blockquote>
-    <p style='text-align: center; font-size: 14px;'>
-        Aplicativo criado por condôminos vigilantes para promover transparência e boa gestão.
-    </p>
-""", unsafe_allow_html=True)
+  <script>
+    const inicio = new Date('2025-05-23T12:00:00');
+    function atualizarContador() {
+      const agora = new Date();
+      const diff = agora - inicio;
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+      document.getElementById('contador').innerText = `${dias} dias, ${horas}h ${minutos}min ${segundos}s de silênçio`;
+    }
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+  </script>
+</body>
+</html>
