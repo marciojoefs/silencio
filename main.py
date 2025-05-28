@@ -33,8 +33,8 @@ st.markdown(f"""
 
 # 🔘 Botões de denúncia e compartilhamento
 url_site = "https://silencio.streamlit.app"
-msg_whatsapp = f"Veja o tempo de silêncio da gestão do nosso condomínio ⏱️\n{url_site}"
-msg_email = f"Prezados,\n\nO silêncio da gestão condominial persiste desde 23/05/2025 às 12h.\nConfira o contador em tempo real: {url_site}\n\nAtenciosamente,\nCondômino vigilante"
+msg_whatsapp = "Veja o tempo de silêncio da gestão do nosso condomínio ⏱️\nhttps://silencio.streamlit.app"
+msg_email = "Prezados,%0A%0AO silêncio da gestão condominial persiste desde 23/05/2025 às 12h.%0AConfira o contador em tempo real: https://silencio.streamlit.app%0A%0AAtenciosamente,%0ACondômino vigilante"
 
 col1, col2 = st.columns(2)
 with col1:
@@ -58,8 +58,7 @@ with col2:
 # 📌 Informativo Legal
 st.markdown("""
     <div style='text-align: center; background-color: #003566; color: white; padding: 12px; border-radius: 8px; font-size: 16px; margin-top: 30px;'>
-        ⚖️ O Código Civil (art. 1.348, VIII) exige que o síndico preste contas e responda aos condôminos.
-        A omissão pode configurar infração legal.
+        ⚖️ O Código Civil (art. 1.348, VIII) exige que o síndico preste contas e responda aos condôminos. A omissão pode configurar infração legal.
     </div>
 """, unsafe_allow_html=True)
 
@@ -72,4 +71,3 @@ st.markdown("""
         Aplicativo criado por condôminos vigilantes para promover transparência e boa gestão.
     </p>
 """, unsafe_allow_html=True)
-
